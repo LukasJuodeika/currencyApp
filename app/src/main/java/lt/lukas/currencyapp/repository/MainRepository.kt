@@ -1,12 +1,10 @@
-package lt.lukas.currencyapp.model
+package lt.lukas.currencyapp.repository
 
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import io.reactivex.schedulers.Schedulers
-import lt.lukas.currencyapp.data.database.CurrencyDatabase
-import lt.lukas.currencyapp.data.database.CurrencyDatabase_Impl
 import lt.lukas.currencyapp.data.database.PeriodDao
 import lt.lukas.currencyapp.data.database.RateDao
 import lt.lukas.currencyapp.data.objects.Rate

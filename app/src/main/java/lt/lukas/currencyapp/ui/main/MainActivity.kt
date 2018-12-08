@@ -49,8 +49,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(mListItems.size > 0)
+                if(mListItems.size > 0){
                     mainViewModel.setInnerRates(mListItems[position])
+                    mainViewModel.selectedCountry.value = position
+                }
             }
         }
 
@@ -105,8 +107,13 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 after_tax_edittext.text = it.toString()
             })
-    }
 
+
+        mainViewModel.getSelectedCountry()
+            .observe(this, Observer {
+                country_spinner.setSelection(it, true)
+            })
+    }
 
     fun setRadioButtons(innerRates: InnerRates)
     {

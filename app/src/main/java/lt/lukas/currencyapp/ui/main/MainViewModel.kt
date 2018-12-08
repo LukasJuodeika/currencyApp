@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
-import lt.lukas.currencyapp.model.MainRepository
+import lt.lukas.currencyapp.repository.MainRepository
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 {
@@ -18,7 +18,10 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     private var sum: Float = 0F
 
+    var selectedCountry: MutableLiveData<Int> = MutableLiveData()
 
+
+    fun getSelectedCountry() = selectedCountry as LiveData<Int>
 
     fun getFullRates() = mainRepository.getFullRates()
 
