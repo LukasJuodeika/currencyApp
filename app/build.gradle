@@ -55,4 +55,6 @@ dependencies {
     //Koin
     implementation "org.koin:koin-android:1.0.2"
     implementation 'org.koin:koin-android-viewmodel:1.0.2'
+
+    implementation "android.arch.work:work-runtime:1.0.0-alpha12"
 }

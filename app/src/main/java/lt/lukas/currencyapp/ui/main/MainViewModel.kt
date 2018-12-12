@@ -40,7 +40,6 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     }
 
-
     fun updateDatabase()
     {
         mainRepository.parseNewData()
@@ -57,7 +56,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
         return innerRates
     }
 
-    fun calculateTaxes(){
+    private fun calculateTaxes(){
         var newTax = 0F
         if(taxes.value!=null)
             newTax = taxes.value!!

@@ -10,13 +10,16 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.work.*
 import com.amitshekhar.DebugDB
 import kotlinx.android.synthetic.main.activity_main.*
 import lt.lukas.currencyapp.R
 import lt.lukas.currencyapp.RateAdapter
 import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
+import lt.lukas.currencyapp.workers.DownloadWorker
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -113,6 +116,7 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 country_spinner.setSelection(it, true)
             })
+
     }
 
     fun setRadioButtons(innerRates: InnerRates)
