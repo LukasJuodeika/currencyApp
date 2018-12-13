@@ -6,17 +6,18 @@ import androidx.lifecycle.ViewModel
 import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
 import lt.lukas.currencyapp.repository.MainRepository
+import java.math.BigDecimal
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 {
 
     private var innerRates: MutableLiveData<InnerRates> = MutableLiveData()
 
-    private var sumAfterTax: MutableLiveData<Float> = MutableLiveData()
+    private var sumAfterTax: MutableLiveData<BigDecimal> = MutableLiveData()
 
     private var taxes: MutableLiveData<Float> = MutableLiveData()
 
-    private var sum: Float = 0F
+    private var sum: BigDecimal = BigDecimal.ZERO
 
     var selectedCountry: MutableLiveData<Int> = MutableLiveData()
 
@@ -33,7 +34,7 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
         calculateTaxes()
     }
 
-    fun updateAmount(sum: Float)
+    fun updateAmount(sum: BigDecimal)
     {
         this.sum = sum
         calculateTaxes()
@@ -58,8 +59,10 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     private fun calculateTaxes(){
         var newTax = 0F
-        if(taxes.value!=null)
+        if(taxes.value != null)
             newTax = taxes.value!!
-        sumAfterTax.value = sum * ( 1 + newTax/100)
+
+        sumAfterTax.value = sum.multiply(BigDecimal((1 + newTax/100).toString()))
+            .setScale(2,BigDecimal.ROUND_HALF_UP)
     }
 }

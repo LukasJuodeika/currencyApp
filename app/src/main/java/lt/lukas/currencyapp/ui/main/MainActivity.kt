@@ -19,6 +19,7 @@ import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
 import lt.lukas.currencyapp.workers.DownloadWorker
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
 
@@ -90,12 +91,12 @@ class MainActivity : AppCompatActivity() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                if (s.toString().toFloatOrNull() != null)
+                if (s.toString().toBigDecimalOrNull() != null)
                 {
-                    mainViewModel.updateAmount(s.toString().toFloat())
+                    mainViewModel.updateAmount(s.toString().toBigDecimal())
                 }
                 else
-                    mainViewModel.updateAmount(0F)
+                    mainViewModel.updateAmount(BigDecimal.ZERO)
             }
         })
 
