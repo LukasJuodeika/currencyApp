@@ -52,8 +52,8 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
         if(rate.periods.size > 0 &&
             (innerRates.value == null || !(innerRates.value!!.equals(rate.periods[0].innerRates))))
         {
+            updateTaxes(rate.periods[0].innerRates!!.standard!!)
             innerRates.value = rate.periods[0].innerRates
-            updateTaxes(innerRates.value!!.standard!!)
         }
 
     }

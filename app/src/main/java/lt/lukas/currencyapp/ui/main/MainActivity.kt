@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModel()
     private var mListItems: ArrayList<Rate> = arrayListOf()
     private lateinit var spinnerAdapter: RateAdapter
-    private var defaultSelection = true
     private var currentTaxRate = -1F
 
 
@@ -56,8 +55,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                if(defaultSelection)
-//                    defaultSelection = false
                 if(mListItems.size > 0){
                     mainViewModel.setInnerRates(mListItems[position])
                     mainViewModel.selectedCountry.value = position
