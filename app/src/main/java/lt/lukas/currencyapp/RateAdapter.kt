@@ -26,9 +26,9 @@ class RateAdapter(context: Context, private val layoutResource: Int, private var
     }
 
     override fun addAll(vararg items: Rate?) {
-        clear()
-        rates = items as ArrayList<Rate>
-        this.notifyDataSetChanged()
+//        clear()
+//        rates = items as ArrayList<Rate>
+//        this.notifyDataSetChanged()
         super.addAll(*items)
     }
 }

@@ -28,15 +28,13 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModel()
     private var mListItems: ArrayList<Rate> = arrayListOf()
     private lateinit var spinnerAdapter: RateAdapter
+    private var defaultSelection = true
+    private var currentTaxRate = -1F
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //mainViewModel = ViewModelProviders.of(this)
-          //  .get(MainViewModel(application as BaseApplication)::class.java)
-
 
         Log.d("myUrl", DebugDB.getAddressLog())
 
@@ -44,6 +42,11 @@ class MainActivity : AppCompatActivity() {
 
 
         country_spinner.adapter = spinnerAdapter
+
+        mainViewModel.getTaxes()
+            .observe(this, Observer {
+                currentTaxRate = it
+            })
 
 
 
@@ -53,6 +56,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                if(defaultSelection)
+//                    defaultSelection = false
                 if(mListItems.size > 0){
                     mainViewModel.setInnerRates(mListItems[position])
                     mainViewModel.selectedCountry.value = position
@@ -64,9 +69,7 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 Log.d("observer","data changed")
                 mListItems = it
-                country_spinner.adapter = null
                 spinnerAdapter.addAll(mListItems)
-                country_spinner.adapter = spinnerAdapter
             })
 
 
@@ -115,8 +118,12 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getSelectedCountry()
             .observe(this, Observer {
-                country_spinner.setSelection(it, true)
+                country_spinner.post {
+                    country_spinner.setSelection(it, false)
+                }
             })
+
+
 
     }
 
@@ -132,6 +139,8 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.updateTaxes(innerRates.parking!!)
             }
             taxes_radio_group.addView(view)
+            if(innerRates.parking == currentTaxRate)
+                view.performClick()
         }
         if(innerRates.reduced != null)
         {
@@ -141,6 +150,8 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.updateTaxes(innerRates.reduced!!)
             }
             taxes_radio_group.addView(view)
+            if(innerRates.reduced == currentTaxRate)
+                view.performClick()
         }
         if(innerRates.reduced1 != null)
         {
@@ -148,9 +159,10 @@ class MainActivity : AppCompatActivity() {
             view.text = innerRates.reduced1.toString()
             view.setOnClickListener {
                 mainViewModel.updateTaxes(innerRates.reduced1!!)
-
             }
             taxes_radio_group.addView(view)
+            if(innerRates.reduced1 == currentTaxRate)
+                view.performClick()
         }
         if(innerRates.reduced2 != null)
         {
@@ -160,6 +172,8 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.updateTaxes(innerRates.reduced2!!)
             }
             taxes_radio_group.addView(view)
+            if(innerRates.reduced2 == currentTaxRate)
+                view.performClick()
         }
         if(innerRates.standard != null)
         {
@@ -167,10 +181,10 @@ class MainActivity : AppCompatActivity() {
             view.text = innerRates.standard.toString()
             view.setOnClickListener {
                 mainViewModel.updateTaxes(innerRates.standard!!)
-
             }
             taxes_radio_group.addView(view)
-            view.performClick()
+            if(innerRates.standard == currentTaxRate)
+                view.performClick()
         }
         if(innerRates.superReduced != null)
         {
@@ -180,6 +194,8 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.updateTaxes(innerRates.superReduced!!)
             }
             taxes_radio_group.addView(view)
+            if(innerRates.superReduced == currentTaxRate)
+                view.performClick()
         }
     }
 }

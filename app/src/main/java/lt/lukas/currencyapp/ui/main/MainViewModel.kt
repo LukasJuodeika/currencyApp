@@ -34,11 +34,12 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
         calculateTaxes()
     }
 
+    fun getTaxes() = taxes as LiveData<Float>
+
     fun updateAmount(sum: BigDecimal)
     {
         this.sum = sum
         calculateTaxes()
-
     }
 
     fun updateDatabase()
@@ -48,8 +49,13 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel()
 
     fun setInnerRates(rate: Rate)
     {
-        if(rate.periods.size > 0)
+        if(rate.periods.size > 0 &&
+            (innerRates.value == null || !(innerRates.value!!.equals(rate.periods[0].innerRates))))
+        {
             innerRates.value = rate.periods[0].innerRates
+            updateTaxes(innerRates.value!!.standard!!)
+        }
+
     }
 
     fun getInnerRates(): LiveData<InnerRates>

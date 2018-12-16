@@ -25,4 +25,20 @@ class InnerRates{
     var parking: Float? = null
 
 
+    override fun equals(other: Any?): Boolean {
+        if(other !is InnerRates)
+            return false
+
+        val o : InnerRates = other
+
+        if(o.superReduced == superReduced &&
+            o.reduced == reduced &&
+            o.reduced1 == reduced1 &&
+            o.reduced2 == reduced2 &&
+            o.standard == standard &&
+            o.parking == parking)
+            return true
+
+        return false
+    }
 }
