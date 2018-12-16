@@ -123,79 +123,31 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-
-
     }
 
-    fun setRadioButtons(innerRates: InnerRates)
+    private fun setRadioButton(value: Float?)
+    {
+        if(value != null)
+        {
+            var view : RadioButton = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
+            view.text = value.toString()
+            view.setOnClickListener {
+                mainViewModel.updateTaxes(value)
+            }
+            taxes_radio_group.addView(view)
+            if(value == currentTaxRate)
+                view.performClick()
+        }
+    }
+
+    private fun setRadioButtons(innerRates: InnerRates)
     {
         taxes_radio_group.removeAllViews()
-        var view : RadioButton
-        if(innerRates.parking != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.parking.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.parking!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.parking == currentTaxRate)
-                view.performClick()
-        }
-        if(innerRates.reduced != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.reduced.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.reduced!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.reduced == currentTaxRate)
-                view.performClick()
-        }
-        if(innerRates.reduced1 != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.reduced1.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.reduced1!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.reduced1 == currentTaxRate)
-                view.performClick()
-        }
-        if(innerRates.reduced2 != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.reduced2.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.reduced2!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.reduced2 == currentTaxRate)
-                view.performClick()
-        }
-        if(innerRates.standard != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.standard.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.standard!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.standard == currentTaxRate)
-                view.performClick()
-        }
-        if(innerRates.superReduced != null)
-        {
-            view = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
-            view.text = innerRates.superReduced.toString()
-            view.setOnClickListener {
-                mainViewModel.updateTaxes(innerRates.superReduced!!)
-            }
-            taxes_radio_group.addView(view)
-            if(innerRates.superReduced == currentTaxRate)
-                view.performClick()
-        }
+        setRadioButton(innerRates.parking)
+        setRadioButton(innerRates.reduced)
+        setRadioButton(innerRates.reduced1)
+        setRadioButton(innerRates.reduced2)
+        setRadioButton(innerRates.standard)
+        setRadioButton(innerRates.superReduced)
     }
 }
