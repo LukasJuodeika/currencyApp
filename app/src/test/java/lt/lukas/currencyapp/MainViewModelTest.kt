@@ -16,8 +16,6 @@ import java.math.BigDecimal
 
 class MainViewModelTest
 {
-
-
     @get:Rule
     val mockitoRule = MockitoJUnit.rule()
 
@@ -28,7 +26,7 @@ class MainViewModelTest
     lateinit var mainViewModel: MainViewModel
 
     @Test
-    fun testUpdateTaxes2() {
+    fun `test updateTaxes and updateAmount`() {
         val taxes = 40F
         mainViewModel.updateTaxes(taxes)
         val taxesResult =mainViewModel.getTaxes().value
@@ -40,13 +38,26 @@ class MainViewModelTest
     }
 
     @Test
-    fun testTaxCalculation()
+    fun `test calculateTaxes method`()
     {
         val a = mainViewModel.calculateTaxes(21F, BigDecimal("100"))
         Assert.assertEquals(BigDecimal("121.00"), a)
     }
 
+    @Test
+    fun `test InnerRates equals method`()
+    {
+        val innerRates1 = InnerRates()
+        val innerRates2 = InnerRates()
+        innerRates1.reduced = 5F
+        innerRates1.parking = 11F
+        innerRates1.standard = 22F
 
-    
+        innerRates2.reduced = 5F
+        innerRates2.parking = 11F
+        innerRates2.standard = 22F
+
+        Assert.assertTrue(innerRates1.equals(innerRates2))
+    }
 }
 
