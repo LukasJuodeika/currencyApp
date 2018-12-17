@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 Log.d("observer","data changed")
                 mListItems = it
-                spinnerAdapter.addAll(mListItems)
+                spinnerAdapter = RateAdapter(this,android.R.layout.simple_spinner_dropdown_item,mListItems)
+                country_spinner.adapter = spinnerAdapter
             })
 
 
         get_info_button.setOnClickListener {
-            Toast.makeText(this, "Network call started", Toast.LENGTH_SHORT).show()
             mainViewModel.updateDatabase()
         }
 
