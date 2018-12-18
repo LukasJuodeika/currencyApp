@@ -15,10 +15,10 @@ class BaseApplication : Application()
         createWorkManager()
     }
 
-    fun createWorkManager()
+    private fun createWorkManager()
     {
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
-        val build = PeriodicWorkRequest.Builder(DownloadWorker::class.java, 16, TimeUnit.MINUTES)
+        val build = PeriodicWorkRequest.Builder(DownloadWorker::class.java, 12, TimeUnit.HOURS)
             .setConstraints(constraints)
             .build()
 
