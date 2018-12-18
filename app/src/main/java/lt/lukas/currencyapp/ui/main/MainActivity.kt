@@ -67,6 +67,17 @@ class MainActivity : AppCompatActivity() {
                 mListItems = it
                 spinnerAdapter = RateAdapter(this,android.R.layout.simple_spinner_dropdown_item,mListItems)
                 country_spinner.adapter = spinnerAdapter
+
+                if(mListItems.isEmpty())
+                {
+                    main_items_group.visibility = View.GONE
+                    no_data_text.visibility = View.VISIBLE
+                }
+                else
+                {
+                    main_items_group.visibility = View.VISIBLE
+                    no_data_text.visibility = View.GONE
+                }
             })
 
 

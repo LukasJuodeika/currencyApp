@@ -8,48 +8,66 @@
         tools:context=".ui.main.MainActivity">
 
 
-    <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/country_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.appcompat.widget.AppCompatSpinner>
-
-
-    <RadioGroup
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/taxes_radio_group"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/country_spinner" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp">
+            android:layout_height="match_parent"
+            android:id="@+id/main_items_group">
 
-    </RadioGroup>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/taxes_radio_group"
-            android:inputType="numberDecimal"
-            android:id="@+id/amount"
-    />
+        <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/country_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.appcompat.widget.AppCompatSpinner>
+
+
+        <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/taxes_radio_group"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/country_spinner" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp">
+
+        </RadioGroup>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/taxes_radio_group"
+                android:inputType="numberDecimal"
+                android:id="@+id/amount"
+        />
+
+        <TextView
+                android:id="@+id/after_tax_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/amount" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/after_tax_edittext" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/amount" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-
+            android:visibility="gone"
+            android:id="@+id/no_data_text"
+            android:text="@string/no_data_to_display" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
