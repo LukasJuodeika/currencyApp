@@ -41,11 +41,7 @@ class MainViewModel(private val mainRepository: MainRepository?) : ViewModel()
         this.sum = sum
         sumAfterTax.value = calculateTaxes(taxes.value, sum)
     }
-
-    fun updateDatabase()
-    {
-        mainRepository!!.parseNewData()
-    }
+    
 
     fun setInnerRates(rate: Rate)
     {

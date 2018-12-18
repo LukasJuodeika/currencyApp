@@ -19,8 +19,7 @@ import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
 import lt.lukas.currencyapp.workers.DownloadWorker
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.math.BigDecimal
-import java.util.concurrent.TimeUnit
+import java.math.BigDecimal import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -71,9 +70,6 @@ class MainActivity : AppCompatActivity() {
             })
 
 
-        get_info_button.setOnClickListener {
-            mainViewModel.updateDatabase()
-        }
 
 
 

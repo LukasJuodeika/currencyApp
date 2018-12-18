@@ -57,7 +57,7 @@ class MainViewModelTest
         innerRates2.parking = 11F
         innerRates2.standard = 22F
 
-        Assert.assertTrue(innerRates1.equals(innerRates2))
+        Assert.assertEquals(innerRates1, innerRates2)
     }
 }
 
