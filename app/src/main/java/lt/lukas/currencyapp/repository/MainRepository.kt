@@ -1,9 +1,9 @@
 package lt.lukas.currencyapp.repository
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import lt.lukas.currencyapp.data.database.PeriodDao
 import lt.lukas.currencyapp.data.database.RateDao
@@ -18,10 +18,9 @@ class MainRepository(
 ){
 
 
-    @SuppressLint("CheckResult")
-    fun parseNewData()
+    fun parseNewData(): Disposable
     {
-        api.getData()
+        return api.getData()
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({

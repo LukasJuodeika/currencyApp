@@ -1,10 +1,7 @@
 package lt.lukas.currencyapp
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import lt.lukas.currencyapp.data.objects.InnerRates
-import lt.lukas.currencyapp.data.objects.Rate
 import lt.lukas.currencyapp.ui.main.MainViewModel
 import org.junit.Assert
 import org.junit.Rule
@@ -14,7 +11,7 @@ import org.mockito.junit.MockitoJUnit
 import java.math.BigDecimal
 
 
-class MainViewModelTest
+class   MainViewModelTest
 {
     @get:Rule
     val mockitoRule = MockitoJUnit.rule()

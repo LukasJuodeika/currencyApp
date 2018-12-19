@@ -7,19 +7,16 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.work.*
 import com.amitshekhar.DebugDB
 import kotlinx.android.synthetic.main.activity_main.*
 import lt.lukas.currencyapp.R
 import lt.lukas.currencyapp.RateAdapter
 import lt.lukas.currencyapp.data.objects.InnerRates
 import lt.lukas.currencyapp.data.objects.Rate
-import lt.lukas.currencyapp.workers.DownloadWorker
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.math.BigDecimal import java.util.concurrent.TimeUnit
+import java.math.BigDecimal
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         country_spinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -133,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     {
         if(value != null)
         {
-            var view : RadioButton = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
+            val view : RadioButton = layoutInflater.inflate(R.layout.taxes_radio_button,null)as RadioButton
             view.text = value.toString()
             view.setOnClickListener {
                 mainViewModel.updateTaxes(value)

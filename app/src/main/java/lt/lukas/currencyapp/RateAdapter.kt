@@ -25,7 +25,4 @@ class RateAdapter(context: Context, private val layoutResource: Int, private var
         return view
     }
 
-    override fun addAll(vararg items: Rate?) {
-        super.addAll(*items)
-    }
 }

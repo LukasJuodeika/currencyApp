@@ -2,9 +2,9 @@ package lt.lukas.currencyapp.workers
 
 import android.content.Context
 import android.util.Log
-import androidx.work.*
+import androidx.work.Worker
+import androidx.work.WorkerParameters
 import lt.lukas.currencyapp.base.BaseApplication
-import lt.lukas.currencyapp.di.AppModule
 import lt.lukas.currencyapp.repository.MainRepository
 import org.koin.android.ext.android.getKoin
 
